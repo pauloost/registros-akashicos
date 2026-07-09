@@ -23,7 +23,7 @@ python3 -m http.server 8000
 
 ## Estado atual
 
-**Fase 0 concluída**: arquitetura, identidade visual Blackwork, navegação funcional entre as três abas (hash routing com transições) e camada de persistência pronta. As fases seguintes — CRUD de almas, códice e timeline — estão descritas em [`docs/PLANO-DE-DESENVOLVIMENTO.md`](docs/PLANO-DE-DESENVOLVIMENTO.md).
+**Fase 1 concluída**: O Livro das Almas está funcional — fichas completas de personagens (nome, epíteto, arquétipo, história, habilidades, vínculos), busca insensível a acentos, ordenação, exclusão em dois toques e **o Oráculo**: um gerador de fragmentos de lore/profecias que combina presságios e destinos temperados pelo arquétipo da alma, com fragmentos graváveis na ficha. As próximas fases — Códice das Leis e Linha do Tempo — estão descritas em [`docs/PLANO-DE-DESENVOLVIMENTO.md`](docs/PLANO-DE-DESENVOLVIMENTO.md).
 
 ## Estrutura
 
@@ -31,6 +31,7 @@ python3 -m http.server 8000
 index.html                      # Casca da SPA
 assets/css/                     # main (tokens/layout) · components · animations
 assets/js/storage.js            # Wrapper do LocalStorage (schema versionado)
+assets/js/oracle.js             # O Oráculo — gerador de profecias por arquétipo
 assets/js/constellation.js      # Firmamento animado em canvas
 assets/js/views/                # almas · codice · cronologia
 assets/js/app.js                # Roteador hash + transições

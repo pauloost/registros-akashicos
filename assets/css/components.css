@@ -196,3 +196,315 @@
   text-transform: uppercase;
   color: var(--ink-faint);
 }
+
+/* ============================================================
+   FASE 1 — O Livro das Almas
+   ============================================================ */
+
+/* Cantoneiras finas reutilizáveis (mesma moldura do altar) */
+.corners { position: relative; }
+
+.corners::before,
+.corners::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--line-strong);
+  pointer-events: none;
+}
+
+.corners::before {
+  top: -1px; left: -1px;
+  border-right: none; border-bottom: none;
+}
+
+.corners::after {
+  bottom: -1px; right: -1px;
+  border-left: none; border-top: none;
+}
+
+/* ---------- Campos e botões ---------- */
+
+.input {
+  width: 100%;
+  padding: 0.6rem 0.9rem;
+  background: var(--parchment-0);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  transition: border-color var(--dur) var(--ease-veil),
+              background var(--dur) var(--ease-veil);
+}
+
+.input::placeholder { color: var(--ink-faint); font-style: italic; }
+
+.input:focus {
+  outline: none;
+  border-color: var(--gilt-dim);
+  background: var(--parchment-1);
+}
+
+select.input { cursor: pointer; }
+select.input option { background: #101014; color: var(--ink); }
+
+textarea.input { resize: vertical; line-height: 1.55; }
+
+.btn {
+  cursor: pointer;
+  padding: 0.7rem 1.4rem;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  transition: border-color var(--dur) var(--ease-veil),
+              color var(--dur) var(--ease-veil),
+              background var(--dur) var(--ease-veil);
+}
+
+.btn:hover { border-color: var(--gilt); color: var(--gilt); }
+
+.btn--gilt { border-color: var(--gilt-dim); color: var(--gilt); }
+.btn--gilt:hover { background: rgba(200, 178, 115, 0.08); }
+
+.btn--quiet { border-color: var(--line); color: var(--ink-dim); }
+
+.btn--small { padding: 0.45rem 0.9rem; font-size: 0.6rem; }
+
+.btn--armed {
+  border-color: rgba(201, 138, 138, 0.7);
+  color: #c98a8a;
+}
+
+.altar__cta { margin-top: 2rem; }
+
+/* ---------- Ferramentas da câmara ---------- */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.toolbar__search { flex: 1 1 14rem; }
+.toolbar__sort { flex: 0 1 12rem; width: auto; }
+
+@media (max-width: 620px) {
+  .toolbar__sort { flex: 1 1 8rem; }
+  .toolbar .btn { flex: 1 1 100%; }
+}
+
+/* ---------- Cartões de alma ---------- */
+
+.souls {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+  align-items: start; /* cartões compactos, sem esticar para igualar a linha */
+}
+
+.soul-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  align-items: flex-start;
+  padding: 1.4rem 1.4rem 1.1rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(var(--parchment-0), transparent 70%);
+  transition: border-color var(--dur) var(--ease-veil),
+              background var(--dur) var(--ease-veil);
+}
+
+.soul-card:hover { border-color: var(--line-strong); }
+
+.soul-card__name {
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.soul-card__epithet {
+  font-style: italic;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+}
+
+.soul-card__prophecy {
+  font-style: italic;
+  color: var(--ink-dim);
+  font-size: 0.9rem;
+  border-left: 1px solid var(--gilt-dim);
+  padding-left: 0.75rem;
+}
+
+.soul-card__meta {
+  display: flex;
+  gap: 1.25rem;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.soul-card__actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.whisper {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+/* ---------- Editor de alma ---------- */
+
+.editor-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.editor-bar__title {
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gilt);
+}
+
+.editor {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 760px) {
+  .editor { grid-template-columns: 1fr; }
+}
+
+.field { margin-bottom: 1.1rem; }
+
+.field__label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.field__error {
+  display: none;
+  margin-top: 0.35rem;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #c98a8a;
+}
+
+.field--error .input { border-color: rgba(201, 138, 138, 0.6); }
+.field--error .field__error { display: block; }
+
+.editor__actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+
+/* ---------- O Oráculo ---------- */
+
+.oracle {
+  align-self: start;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(var(--parchment-0), transparent);
+}
+
+.oracle__title {
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gilt);
+}
+
+.oracle__hint {
+  margin-top: 0.75rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+}
+
+.oracle__text {
+  margin: 1.25rem 0;
+  min-height: 4rem;
+  font-style: italic;
+  line-height: 1.65;
+}
+
+.oracle__text--empty { color: var(--ink-faint); }
+
+.oracle__actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.oracle__subtitle {
+  margin: 1.75rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.prophecies {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prophecy {
+  position: relative;
+  padding: 0.1rem 2rem 0.1rem 0.9rem;
+  border-left: 1px solid var(--gilt-dim);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ink-dim);
+}
+
+.prophecy__remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.2rem 0.4rem;
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.prophecy__remove:hover { color: #c98a8a; }

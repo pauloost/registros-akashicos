@@ -72,10 +72,11 @@ Cada registro carrega `id` (gerado), `createdAt` e `updatedAt`. O campo `version
 - [x] Fundo de constelações animado
 - [x] Estados vazios temáticos em cada aba
 
-### Fase 1 — O Livro das Almas
-- CRUD completo de fichas: nome, epíteto, história, habilidades, vínculos
-- Gerador de fragmentos de lore/profecias por combinação de arquétipos
-- Busca e ordenação das almas registradas
+### Fase 1 — O Livro das Almas (concluída)
+- [x] CRUD completo de fichas: nome, epíteto, arquétipo, história, habilidades, vínculos
+- [x] O Oráculo: gerador de fragmentos de lore/profecias temperado pelo arquétipo da alma (`oracle.js`), com fragmentos graváveis na ficha
+- [x] Busca (insensível a acentos) e ordenação (recentes, nome a–z, antigas) das almas registradas
+- [x] Exclusão em dois toques (armar → confirmar) e validação de nome obrigatório
 
 ### Fase 2 — O Códice das Leis
 - Documentos estruturados: princípio, mecânica, limitações, fraquezas

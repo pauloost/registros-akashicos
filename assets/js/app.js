@@ -31,6 +31,8 @@
     viewEl.classList.remove("view--leaving");
     viewEl.classList.add("view--entering");
     document.title = view.title + " · Registros Akáshicos";
+    // Views interativas recebem o hook de montagem para ligar seus eventos
+    if (typeof view.mount === "function") view.mount(viewEl);
     // Move o foco para o conteúdo em navegação por teclado/leitor de tela
     viewEl.focus({ preventScroll: true });
   }
