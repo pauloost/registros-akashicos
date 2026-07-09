@@ -1,0 +1,198 @@
+/* ============================================================
+   REGISTROS AKÁSHICOS — components.css
+   Portões de navegação, cabeçalhos de view, estados vazios
+   ============================================================ */
+
+/* ---------- Portões (navegação em abas) ---------- */
+
+.gates {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px; /* traço fino compartilhado entre células */
+  margin: clamp(2.5rem, 6vw, 4rem) 0 clamp(2rem, 5vw, 3rem);
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.gate {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.6rem 1rem 1.4rem;
+  background: var(--abyss);
+  text-align: center;
+  transition: background var(--dur) var(--ease-veil);
+}
+
+.gate__glyph {
+  width: 40px;
+  color: var(--ink-dim);
+  transition: color var(--dur) var(--ease-veil),
+              transform var(--dur) var(--ease-veil);
+}
+
+.gate__name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.gate__hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Traço inferior que se acende no portão ativo */
+.gate::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gilt);
+  transform: translateX(-50%);
+  transition: width var(--dur) var(--ease-veil);
+}
+
+.gate:hover {
+  background: var(--parchment-0);
+}
+
+.gate:hover .gate__glyph {
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.gate[aria-selected="true"] {
+  background: var(--parchment-0);
+}
+
+.gate[aria-selected="true"] .gate__glyph { color: var(--gilt); }
+.gate[aria-selected="true"]::after { width: 60%; }
+
+@media (max-width: 620px) {
+  .gates { grid-template-columns: 1fr; }
+  .gate {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 1rem 1.25rem;
+  }
+  .gate__glyph { width: 30px; flex-shrink: 0; }
+  .gate__hint { margin-left: auto; }
+  .gate::after { left: 0; transform: none; }
+  .gate[aria-selected="true"]::after { width: 100%; }
+}
+
+/* ---------- Cabeçalho de cada view ---------- */
+
+.chamber__header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.chamber__numeral {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--gilt);
+}
+
+.chamber__title {
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.chamber__count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.chamber__lede {
+  margin-top: 1rem;
+  max-width: 40rem;
+  font-style: italic;
+  color: var(--ink-dim);
+}
+
+/* ---------- Estado vazio (altar) ---------- */
+
+.altar {
+  margin-top: 2.5rem;
+  padding: clamp(2.5rem, 7vw, 4.5rem) 1.5rem;
+  border: 1px solid var(--line);
+  text-align: center;
+  background:
+    linear-gradient(var(--parchment-0), transparent 60%);
+}
+
+/* Cantoneiras finas — moldura Blackwork */
+.altar {
+  position: relative;
+}
+
+.altar::before,
+.altar::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--line-strong);
+}
+
+.altar::before {
+  top: -1px; left: -1px;
+  border-right: none; border-bottom: none;
+}
+
+.altar::after {
+  bottom: -1px; right: -1px;
+  border-left: none; border-top: none;
+}
+
+.altar__glyph {
+  display: block;
+  width: 56px;
+  margin: 0 auto 1.5rem;
+  color: var(--ink-faint);
+}
+
+.altar__title {
+  font-size: 1.05rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.altar__text {
+  max-width: 30rem;
+  margin: 0.9rem auto 0;
+  color: var(--ink-dim);
+  font-style: italic;
+}
+
+.altar__seal {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.55rem 1.6rem;
+  border: 1px solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}

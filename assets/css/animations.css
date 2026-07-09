@@ -1,0 +1,52 @@
+/* ============================================================
+   REGISTROS AKÁSHICOS — animations.css
+   Transições entre views e reveals de entrada
+   ============================================================ */
+
+/* Revelação da casca no primeiro carregamento */
+.portal,
+.gates,
+.colophon {
+  animation: rise 900ms var(--ease-veil) both;
+}
+
+.gates   { animation-delay: 150ms; }
+.colophon { animation-delay: 300ms; }
+
+/* Transição aplicada pelo roteador a cada troca de view */
+.view--entering {
+  animation: rise var(--dur) var(--ease-veil) both;
+}
+
+.view--leaving {
+  animation: sink 200ms ease-in both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sink {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+/* Pulso lento do sigilo do portal */
+.portal__sigil svg {
+  animation: breathe 9s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.75; }
+  50%      { opacity: 1; }
+}
+
+/* Acessibilidade: sem movimento para quem o dispensa */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

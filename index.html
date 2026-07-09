@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registros Akáshicos — central de worldbuilding para catalogar universos ficcionais.">
+  <meta name="color-scheme" content="dark">
+  <title>Registros Akáshicos</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23e8e4da' stroke-width='1.5'%3E%3Ccircle cx='16' cy='16' r='13'/%3E%3Cpath d='M16 3 L29 16 L16 29 L3 16 Z'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23c8b273' stroke='none'/%3E%3C/g%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+  <!-- Firmamento: fundo de constelações desenhado em canvas -->
+  <canvas id="constellation" aria-hidden="true"></canvas>
+
+  <div class="veil" aria-hidden="true"></div>
+
+  <div class="shell">
+
+    <header class="portal">
+      <div class="portal__sigil" aria-hidden="true">
+        <!-- Sigilo central: círculo, losango e olho — geometria Blackwork -->
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="60" cy="60" r="54"/>
+          <circle cx="60" cy="60" r="44" stroke-dasharray="2 5"/>
+          <path d="M60 12 L108 60 L60 108 L12 60 Z"/>
+          <path d="M24 60 Q60 26 96 60 Q60 94 24 60 Z"/>
+          <circle cx="60" cy="60" r="9"/>
+          <circle cx="60" cy="60" r="2.5" fill="currentColor" stroke="none"/>
+          <line x1="60" y1="2" x2="60" y2="12"/>
+          <line x1="60" y1="108" x2="60" y2="118"/>
+          <line x1="2" y1="60" x2="12" y2="60"/>
+          <line x1="108" y1="60" x2="118" y2="60"/>
+        </svg>
+      </div>
+      <p class="portal__eyebrow">⟡ o arquivo etéreo de todos os mundos ⟡</p>
+      <h1 class="portal__title">Registros Akáshicos</h1>
+      <p class="portal__subtitle">Inscreva almas, decrete leis, grave eras. O que for escrito aqui, o cosmos recorda.</p>
+    </header>
+
+    <nav class="gates" aria-label="Seções do registro">
+      <a href="#/almas" class="gate" data-route="almas" role="tab" aria-selected="false">
+        <span class="gate__glyph" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="20" cy="20" r="17"/>
+            <path d="M20 6 v28 M11 10.5 c6 5 12 5 18 0 M11 29.5 c6 -5 12 -5 18 0"/>
+            <circle cx="20" cy="20" r="3"/>
+          </svg>
+        </span>
+        <span class="gate__name">O Livro das Almas</span>
+        <span class="gate__hint">personagens &amp; destinos</span>
+      </a>
+
+      <a href="#/codice" class="gate" data-route="codice" role="tab" aria-selected="false">
+        <span class="gate__glyph" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M20 3 L37 20 L20 37 L3 20 Z"/>
+            <path d="M20 10 L30 20 L20 30 L10 20 Z"/>
+            <line x1="20" y1="3" x2="20" y2="10"/>
+            <line x1="20" y1="30" x2="20" y2="37"/>
+            <line x1="3" y1="20" x2="10" y2="20"/>
+            <line x1="30" y1="20" x2="37" y2="20"/>
+            <circle cx="20" cy="20" r="2" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <span class="gate__name">O Códice das Leis</span>
+        <span class="gate__hint">sistemas de poder</span>
+      </a>
+
+      <a href="#/cronologia" class="gate" data-route="cronologia" role="tab" aria-selected="false">
+        <span class="gate__glyph" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1">
+            <line x1="20" y1="2" x2="20" y2="38"/>
+            <circle cx="20" cy="8" r="2.5"/>
+            <circle cx="20" cy="20" r="4"/>
+            <circle cx="20" cy="32" r="2.5"/>
+            <line x1="24" y1="20" x2="34" y2="20"/>
+            <line x1="6" y1="8" x2="17.5" y2="8"/>
+            <line x1="22.5" y1="32" x2="34" y2="32"/>
+          </svg>
+        </span>
+        <span class="gate__name">A Linha do Tempo</span>
+        <span class="gate__hint">eras &amp; eventos</span>
+      </a>
+    </nav>
+
+    <!-- As views são renderizadas aqui pelo roteador (app.js) -->
+    <main id="view" class="view" tabindex="-1"></main>
+
+    <footer class="colophon">
+      <span class="colophon__rule" aria-hidden="true"></span>
+      <p>Seus registros permanecem neste navegador — nada é enviado a servidor algum.</p>
+      <span class="colophon__rule" aria-hidden="true"></span>
+    </footer>
+
+  </div>
+
+  <!-- Ordem importa: núcleo → views → roteador -->
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/constellation.js"></script>
+  <script src="assets/js/views/almas.js"></script>
+  <script src="assets/js/views/codice.js"></script>
+  <script src="assets/js/views/cronologia.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
