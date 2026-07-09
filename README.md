@@ -23,7 +23,7 @@ python3 -m http.server 8000
 
 ## Estado atual
 
-**Fase 1 concluída**: O Livro das Almas está funcional — fichas completas de personagens (nome, epíteto, arquétipo, história, habilidades, vínculos), busca insensível a acentos, ordenação, exclusão em dois toques e **o Oráculo**: um gerador de fragmentos de lore/profecias que combina presságios e destinos temperados pelo arquétipo da alma, com fragmentos graváveis na ficha. As próximas fases — Códice das Leis e Linha do Tempo — estão descritas em [`docs/PLANO-DE-DESENVOLVIMENTO.md`](docs/PLANO-DE-DESENVOLVIMENTO.md).
+**Fase 2 concluída**: além do Livro das Almas (fichas de personagens com o Oráculo gerador de profecias), o **Códice das Leis** está funcional como uma enciclopédia mística — verbetes com princípio, gatilhos de ativação, limitações e fraquezas, e um **gráfico de radar em SVG dinâmico** (sem bibliotecas) que perfila cada lei em seis eixos de balanceamento: potência, alcance, versatilidade, controle, exaustão e restrição. O editor redesenha a teia ao vivo conforme os sliders, e o índice mostra miniaturas do radar com o "peso da lei". A próxima fase — A Linha do Tempo — está descrita em [`docs/PLANO-DE-DESENVOLVIMENTO.md`](docs/PLANO-DE-DESENVOLVIMENTO.md).
 
 ## Estrutura
 
@@ -32,6 +32,7 @@ index.html                      # Casca da SPA
 assets/css/                     # main (tokens/layout) · components · animations
 assets/js/storage.js            # Wrapper do LocalStorage (schema versionado)
 assets/js/oracle.js             # O Oráculo — gerador de profecias por arquétipo
+assets/js/radar.js              # Gráfico de radar (teia) em SVG dinâmico
 assets/js/constellation.js      # Firmamento animado em canvas
 assets/js/views/                # almas · codice · cronologia
 assets/js/app.js                # Roteador hash + transições

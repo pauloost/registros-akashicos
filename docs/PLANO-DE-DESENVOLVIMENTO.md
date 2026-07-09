@@ -78,10 +78,14 @@ Cada registro carrega `id` (gerado), `createdAt` e `updatedAt`. O campo `version
 - [x] Busca (insensível a acentos) e ordenação (recentes, nome a–z, antigas) das almas registradas
 - [x] Exclusão em dois toques (armar → confirmar) e validação de nome obrigatório
 
-### Fase 2 — O Códice das Leis
-- Documentos estruturados: princípio, mecânica, limitações, fraquezas
-- Escalas de poder configuráveis (tiers nomeáveis pelo usuário)
-- Referências cruzadas Códice ↔ Almas
+### Fase 2 — O Códice das Leis (concluída)
+- [x] Enciclopédia mística em três modos: índice de verbetes, página da lei e editor
+- [x] Verbete estruturado: princípio da lei, gatilhos de ativação, limitações e fraquezas, com epígrafe, domínio e datas de decreto/emenda
+- [x] Gráfico de radar (teia) em SVG dinâmico sem bibliotecas (`radar.js`), com 6 atributos de balanceamento: potência, alcance, versatilidade, controle, exaustão e restrição
+- [x] Radar ao vivo no editor (sliders redesenham a teia), tooltips nos vértices, legenda com barras, "peso da lei" (média) e variante mini nos cartões do índice
+- [x] Busca, ordenação (recentes, nome, maior peso) e revogação em dois toques
+
+> Referências cruzadas Códice ↔ Almas ficam para a Fase 3, junto dos vínculos da Linha do Tempo.
 
 ### Fase 3 — A Linha do Tempo
 - Eventos com era, data ficcional, título e descrição

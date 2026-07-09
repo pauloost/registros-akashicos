@@ -508,3 +508,336 @@ textarea.input { resize: vertical; line-height: 1.55; }
 }
 
 .prophecy__remove:hover { color: #c98a8a; }
+
+/* ============================================================
+   FASE 2 — O Códice das Leis
+   ============================================================ */
+
+/* ---------- Gráfico de radar (teia) ---------- */
+
+.radar {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.radar__ring,
+.radar__spoke {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 0.6;
+}
+
+.radar__ring:last-of-type { stroke: var(--line-strong); }
+
+.radar__label {
+  fill: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.radar__shape {
+  fill: rgba(200, 178, 115, 0.12);
+  stroke: var(--gilt);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.radar__dot {
+  fill: var(--abyss);
+  stroke: var(--gilt);
+  stroke-width: 1;
+  cursor: help;
+  transition: fill var(--dur) var(--ease-veil);
+}
+
+.radar__dot:hover { fill: var(--gilt); }
+
+/* Florescer da teia ao entrar */
+.radar__data {
+  transform-origin: 50% 50%;
+  transform-box: view-box;
+  animation: radar-bloom 700ms var(--ease-veil) both;
+}
+
+@keyframes radar-bloom {
+  from { opacity: 0; transform: scale(0.55); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.radar--mini { max-width: none; }
+
+/* ---------- Índice do códice (verbetes) ---------- */
+
+.laws {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+  align-items: start;
+}
+
+.law-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.4rem 1.4rem 1.1rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(var(--parchment-0), transparent 70%);
+  transition: border-color var(--dur) var(--ease-veil);
+}
+
+.law-card:hover { border-color: var(--line-strong); }
+
+.law-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.law-card__name {
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.law-card__epigraph {
+  font-style: italic;
+  color: var(--ink-dim);
+  font-size: 0.92rem;
+}
+
+.law-card__meta { margin-top: auto; }
+
+.law-card__radar {
+  width: 88px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  opacity: 0.9;
+}
+
+@media (max-width: 420px) {
+  .law-card { flex-direction: column-reverse; }
+  .law-card__radar { width: 110px; align-self: center; }
+}
+
+/* ---------- Verbete (página wiki da lei) ---------- */
+
+.codex-doc { margin-top: 1.5rem; }
+
+.codex-doc__header { text-align: center; }
+
+.codex-doc__title {
+  margin-top: 0.9rem;
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.codex-doc__epigraph {
+  max-width: 32rem;
+  margin: 1rem auto 0;
+  font-style: italic;
+  color: var(--ink-dim);
+  border: none;
+}
+
+.codex-doc__epigraph::before,
+.codex-doc__epigraph::after {
+  content: "⟡";
+  display: block;
+  margin: 0.5rem auto;
+  color: var(--gilt-dim);
+  font-size: 0.7rem;
+  font-style: normal;
+}
+
+/* Radar + legenda lado a lado */
+.codex-profile {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 2.25rem;
+  padding: 2rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(var(--parchment-0), transparent 70%);
+}
+
+@media (max-width: 720px) {
+  .codex-profile { grid-template-columns: 1fr; padding: 1.5rem 1.25rem; }
+}
+
+.legend { min-width: 0; }
+
+.legend__row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr 1.5rem;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+  cursor: help;
+}
+
+.legend__row:first-child { padding-top: 0; }
+
+.legend__label,
+.legend__value {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.legend__value { text-align: right; color: var(--gilt); }
+
+.legend__track {
+  display: block;
+  height: 3px;
+  background: var(--parchment-1);
+  overflow: hidden;
+}
+
+.legend__bar {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gilt-dim), var(--gilt));
+  animation: bar-grow 800ms var(--ease-veil) both;
+  transform-origin: left center;
+}
+
+@keyframes bar-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.legend__weight {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.legend__weight strong { color: var(--gilt); font-weight: 400; }
+
+/* Blocos estruturados do verbete */
+.codex-block { margin-top: 2.25rem; }
+
+.codex-block__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.codex-block__text {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--line-strong);
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.codex-block__empty {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--line);
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+.doc-actions { display: flex; gap: 0.5rem; }
+
+.doc-meta {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---------- Sliders de atributo (editor) ---------- */
+
+.attr-chart { margin: 1.25rem 0; }
+
+.attrs { display: flex; flex-direction: column; gap: 0.9rem; }
+
+.attr__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.attr__label { margin-bottom: 0.3rem; }
+
+.attr__value {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--gilt);
+}
+
+.attr__range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 18px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.attr__range::-webkit-slider-runnable-track {
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.attr__range::-moz-range-track {
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.attr__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  margin-top: -5px;
+  background: var(--abyss);
+  border: 1px solid var(--gilt);
+  transform: rotate(45deg); /* losango Blackwork */
+  transition: background var(--dur) var(--ease-veil);
+}
+
+.attr__range::-moz-range-thumb {
+  width: 9px;
+  height: 9px;
+  background: var(--abyss);
+  border: 1px solid var(--gilt);
+  border-radius: 0;
+  transform: rotate(45deg);
+}
+
+.attr__range::-webkit-slider-thumb:hover,
+.attr__range:focus-visible::-webkit-slider-thumb { background: var(--gilt); }
+.attr__range::-moz-range-thumb:hover,
+.attr__range:focus-visible::-moz-range-thumb { background: var(--gilt); }
+
+.attr__range:focus-visible { outline: none; }
